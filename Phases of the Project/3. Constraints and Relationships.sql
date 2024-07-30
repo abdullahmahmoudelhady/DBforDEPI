@@ -1,29 +1,43 @@
--- Adding a FK Constraint
+-- Foreign Key Relationship
 ALTER TABLE Employees
-ADD CONSTRAINT fk_department
+ADD CONSTRAINT FK_Department
 FOREIGN KEY (DepartmentID) REFERENCES Departments(DepartmentID);
 
--- NOT NULL Constraints
-ALTER TABLE employees MODIFY EmployeeID INT NOT NULL;
+DESC Employees;
 
+
+-- Data Integrity
 ALTER TABLE Employees
 MODIFY COLUMN FirstName VARCHAR(20) NOT NULL,
-MODIFY COLUMN LastName VARCHAR(20) NOT NULL;
+MODIFY COLUMN LastName VARCHAR(20) NOT NULL,
+MODIFY COLUMN DepartmentID VARCHAR(20) NOT NULL,
+MODIFY COLUMN HireDate DATE NOT NULL,
+MODIFY COLUMN Position VARCHAR(50) NOT NULL,
+MODIFY COLUMN Salary DECIMAL(10, 2) NOT NULL;
 
-
-
--- Making sure no date is in the future (CHECK CONSTRAINTS)
-ALTER TABLE Employees
-ADD CONSTRAINT chk_hiring_date CHECK (HireDate <= CURDATE());
-
--- Making sure salaries are positive (CHECK CONSTRAINTS)
-ALTER TABLE employees
-ADD CONSTRAINT salary_positve CHECK (salary > 0 AND salary);
-
--- Data Consistency
-USE group1;
-SELECT * FROM employees 
+SELECT * FROM Employees 
 WHERE EmployeeID IS NULL
 
+DESC Employees;
 
+ALTER TABLE Departments
+MODIFY COLUMN DepartmentName VARCHAR(50) NOT NULL,
+MODIFY COLUMN Location VARCHAR(50) NOT NULL;
 
+DESC Departments;
+
+-- Use CHECK Constraints for Data Integrity
+ALTER TABLE Employees
+ADD CONSTRAINT CK_Salary_Positive
+CHECK (Salary > 0);
+-- ERROR
+INSERT INTO Employees VALUES (5555, 'Sayed', 'Ashraf', 'S1', '2019-02-01', 'Surveyor', 0)
+
+-- Disallowed Function, We might use triggers
+ALTER TABLE Employees
+ADD CONSTRAINT CK_HireDate_Past
+CHECK (HireDate <= CURRENT_DATE);
+
+-- Making Sure The data is correct (Validation)
+SELECT * FROM Employees;
+SELECT * FROM Departments;
