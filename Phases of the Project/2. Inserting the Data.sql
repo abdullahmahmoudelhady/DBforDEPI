@@ -1,5 +1,5 @@
 -- Employees Data
-USE group1;
+USE DBforDEPI;
 INSERT INTO Employees VALUES
 (11225, 'Ahmed', 'Hamdy', 'ODHO', '2018-01-29', 'OD Manager', 28000.00),
 (12230, 'Abdelaziz', 'Omar', 'TAHO', '2016-03-19', 'TA Team Leader', 34000.00),
@@ -10,7 +10,7 @@ INSERT INTO Employees VALUES
 (11112, 'Ahmed', 'Mahran', 'S1', '2007-02-21', 'Construction Manager', 65000.00)
 
 -- Departments Data
-USE group1;
+USE DBforDEPI;
 INSERT INTO Departments VALUES
 ('ODHO', 'Organizational Development', 'Head Office'),
 ('TAHO', 'Talent Acquisition', 'Head Office'),
