@@ -89,3 +89,12 @@ INSERT INTO OrderDetails VALUES
 (1, 1, 1, 2000, 1003333.00),
 (2, 2, 2, 500, 500000.00);
 
+-- Add constraints to Projects table
+ALTER TABLE Projects
+ADD CONSTRAINT chk_budget CHECK (Budget > 0);
+
+
+-- Example UPDATE statement
+UPDATE Projects
+SET Budget = 600000.00
+WHERE ProjectID = 1;
